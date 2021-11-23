@@ -1,0 +1,13 @@
+{
+    "name": "AdminBlog",
+    "alias": "adminblog",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AdminBlog\\Providers\\AdminBlogServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
