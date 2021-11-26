@@ -17,7 +17,7 @@ class RouteController extends Controller
     public function dashboard()
     {
         try {
-            return view('adminblog::layouts.master');
+            return view('adminblog::dashboard.index');
         } catch (\Throwable $th) {
             dd($th->getMessage());
             return back()->with('error', 'Error '.$th->getMessage());
@@ -33,7 +33,7 @@ class RouteController extends Controller
     {
         try {
             Auth::logout();
-            return redirect()->route('login.index');
+            return redirect('/');
         } catch (\Throwable $th) {
             //throw $th;
             dd($th->getMessage());

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class LoginWithSocialliteController extends Controller
 {
@@ -21,7 +22,7 @@ class LoginWithSocialliteController extends Controller
         try {
             return Socialite::driver($provider)->redirect();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            dd($th);
             return back()->with('error', 'Error '.$th->getMessage());
         }
     }
@@ -29,12 +30,12 @@ class LoginWithSocialliteController extends Controller
     public function callback($provider)
     {
         try {
-            $user = Socialite::driver($provider)->user();
+            $user = Socialite::driver($provider)->stateless()->user();
             $authUser = $this->findOrCreateUser($user, $provider);
             Auth::login($authUser, true);
-            return redirect()->route('admin.home'); // redirect ke halaman home masing-masing yaa:D
+            return redirect('/'); // redirect ke halaman home masing-masing yaa:D
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            dd($th);
             return back()->with('error', 'Error ' . $th->getMessage());
         }
     }
@@ -47,7 +48,9 @@ class LoginWithSocialliteController extends Controller
                 return $authUser;
             }
             return User::create([
+                'avatar' => $provider == 'google' ? $user->getAvatar() : $user->avatar,
                 'fullname'     => $user->name,
+                'username' => $user->nickname == null ? '@'.Str::slug(substr($user->name, 0, 10)) : '@'. $user->nickname,
                 'email'    => $user->email,
                 'provider' => $provider,
                 'provider_id' => $user->id,

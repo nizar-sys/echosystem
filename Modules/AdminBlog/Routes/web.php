@@ -13,14 +13,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->group(function() {
+Route::prefix('echosystem')->group(function() {
     Route::get('/', 'Route\RouteController@index')->name('login');
     
     /* ===Begin Auth=== */
     Route::resource('login', 'Auth\LoginController');
 
     Route::get('/{provider}/login', 'Auth\LoginWithSocialliteController@redirect')->name('provider.login');
-    Route::get('{provider}/callback', 'Auth\LoginWithSocialliteController@callback')->name('provider.post.login');
+    Route::get('/{provider}/callback', 'Auth\LoginWithSocialliteController@callback')->name('provider.post.login');
     /* ===End Auth=== */
 
     /* ===Has Auth=== */

@@ -24,4 +24,13 @@ class RouteController extends Controller
             return back()->with('error', 'Error '.$th->getMessage());
         }
     }
+
+    public function newStory()
+    {
+        try {
+            return view('blog.newStory');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Error '.$th->getMessage());
+        }
+    }
 }

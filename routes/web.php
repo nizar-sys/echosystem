@@ -17,5 +17,7 @@ use Illuminate\Support\Facades\Route;
 // BLOG
 Route::name('blog.')->group(function () {
     Route::get('/', [RouteController::class, 'blogHome'])->name('home');
+    Route::get('/new-story', [RouteController::class, 'newStory'])->name('new-story');
+
     Route::get('/post/{post:slug}', [RouteController::class, 'postDetail'])->name('post.detail');
 });
