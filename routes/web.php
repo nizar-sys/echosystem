@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\route\RouteController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,11 @@ Route::name('blog.')->group(function () {
     Route::get('/', [RouteController::class, 'blogHome'])->name('home');
     Route::get('/new-story', [RouteController::class, 'newStory'])->name('new-story');
 
+
+    Route::post('/ckeditor/upload', [BlogController::class, 'uploadCkEditor'])->name('ckeditor.upload');
     Route::get('/post/{post:slug}', [RouteController::class, 'postDetail'])->name('post.detail');
 });
+
+// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+//     \UniSharp\LaravelFilemanager\Lfm::routes();
+// });
