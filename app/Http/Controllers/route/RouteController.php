@@ -5,6 +5,7 @@ namespace App\Http\Controllers\route;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RouteController extends Controller
 {
@@ -40,6 +41,16 @@ class RouteController extends Controller
         try {
             $story = Post::all()->where('id', $storyID)->first();
             return view('blog.editStory', compact('story'));
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Error '.$th->getMessage());
+        }
+    }
+
+    public function listStory()
+    {
+        try {
+            $story = Post::all()->where('user_id', Auth::id());
+            return view('blog.listStory', compact('story'));
         } catch (\Throwable $th) {
             return back()->with('error', 'Error '.$th->getMessage());
         }

@@ -9,7 +9,7 @@
     <input type="hidden" name="story_id" id="story_id" value="{{ $story->id }}">
     <button class="btn btn-sm btn-success float-right" onclick="postStory($('#editor'))">Save</button>
     <div id="editor">
-        {{!! $story->content !!}}
+        {!! $story->content !!}
     </div>
 
 @endsection

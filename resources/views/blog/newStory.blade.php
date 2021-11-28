@@ -28,6 +28,9 @@
                     content
                 }
                 const response = await HitData("{{ route('blog.post.create') }}", data, 'POST')
+                Snackbar.show({
+                    text: 'Created!'
+                })
                 window.location.href = `/story/${response.id}/edit`
             } catch (error) {
                 Snackbar.show({

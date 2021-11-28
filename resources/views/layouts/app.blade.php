@@ -80,6 +80,7 @@
                             @else
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="/new-story">Write new story</a>
+                                <a class="dropdown-item" href="/me/stories">Stories</a>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
                             @endif
                         </div>
