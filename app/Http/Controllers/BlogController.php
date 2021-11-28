@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -24,6 +25,33 @@ class BlogController extends Controller
             }
 
             return response()->json(['url' => $url]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function postStory(Request $request)
+    {
+        try {
+
+            if ($request->has('story_id')) {
+                $newPost = Post::all()->where('id', $request->story_id)->first()->update([
+                    'title' => $request->title,
+                    'content' => $request->content
+                ]);
+            } else {
+                $newPost = Post::create([
+                    'user_id' => $request->user()->id,
+                    'tag_id' => '1',
+                    'title' => $request->title,
+                    'content' => $request->content
+                ]);
+            }
+
+            return response()->json($newPost);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
