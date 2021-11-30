@@ -24,7 +24,7 @@ class BlogController extends Controller
                 $url = asset($path_url . '/' . $fileName);
             }
 
-            return response()->json(['url' => $url]);
+            return response()->json(['url' => $url, 'filename' => $fileName]);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
@@ -40,14 +40,15 @@ class BlogController extends Controller
             if ($request->has('story_id')) {
                 $newPost = Post::all()->where('id', $request->story_id)->first()->update([
                     'title' => $request->title,
-                    'content' => $request->content
+                    'content' => $request->content,
                 ]);
             } else {
                 $newPost = Post::create([
                     'user_id' => $request->user()->id,
                     'tag_id' => '1',
                     'title' => $request->title,
-                    'content' => $request->content
+                    'content' => $request->content,
+                    'thumbnail' => $request->thumbnail == '' ? 'thumbPost.png' : $request->thumbnail
                 ]);
             }
 

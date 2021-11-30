@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', 'My-echosystem - Your stories')
 @section('content')
     <section class="featured-posts">
@@ -9,22 +8,21 @@
         </div>
         <div class="card-columns listfeaturedtag">
             @foreach ($story as $story)
+                @php
+                    $thumbnail = $story->thumbnail == 'thumbPost.png' ? asset('/assets/img/demopic/thumbPost.png') : $story->thumbnail;
+                @endphp
                 <div class="card">
                     <div class="row">
                         <div class="col-md-5 wrapthumbnail">
-                            <a href="post.html">
-                                <div class="thumbnail"
-                                    style="background-image:url({{ asset('/') }}assets/img/demopic/1.jpg);">
-                                </div>
-                            </a>
+                            <div class="thumbnail" style="background-image:url({{ $thumbnail }}); cursor: pointer;">
+                            </div>
                         </div>
                         <div class="col-md-7">
                             <div class="card-block">
                                 <h2 class="card-title">
                                 </h2>
                                 {{-- <h4 class="card-text">{!! substr($story->content, 0, 100) !!}</h4> --}}
-                                <h4 class="card-text"><a
-                                        style="color: #000"
+                                <h4 class="card-text"><a style="color: #000"
                                         href="{{ route('blog.post.edit', ['id' => $story->id]) }}">{!! substr($story->content, 0, 100) . '...' !!}</a>
                                 </h4>
                                 <div class="metafooter">
@@ -49,4 +47,51 @@
             @endforeach
         </div>
     </section>
+@endsection
+
+@section('c_js')
+    <script>
+        function bacaGambar(input) {
+            try {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#avaImage').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+
+                    Swal.fire({
+                        title: 'Lanjutkan pasang thumbnail?',
+                        text: "Jadikan gambar sebagai thumbnail",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya!',
+                        cancelButtonText: 'Batalkan'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#form-upload').submit()
+                        } else {
+                            $('#avaImage').css('background-image',
+                                `url('/assets/img/demopic/${$('#oldImage').val()}')`)
+                        }
+                    })
+                }
+            } catch (error) {
+
+                Snackbar.show({
+                    text: 'Error ' + error,
+                    duration: 4000,
+                });
+                window.location.reload()
+            }
+        }
+
+        $('input[name="image"]').change(function() {
+            bacaGambar(this);
+        });
+    </script>
 @endsection

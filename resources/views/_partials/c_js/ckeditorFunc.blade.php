@@ -4,7 +4,7 @@
             this.loader = loader;
             this.url = '/ckeditor/upload';
 
-            //
+            this.filename = '';
         }
         // Starts the upload process.
         upload() {
@@ -39,6 +39,7 @@
             xhr.addEventListener("abort", () => reject());
             xhr.addEventListener("load", () => {
                 const response = xhr.response;
+                $('#thumbnail').val(response.url);
                 if (!response || response.error) {
                     return reject(response && response.error ? response.error.message : genericErrorText);
                 }
@@ -74,8 +75,9 @@
 
     //Initialize the ckeditor
     InlineEditor.create(document.querySelector("#editor"), {
-        extraPlugins: [SimpleUploadAdapterPlugin],
-    }).catch((error) => {
-        console.error(error);
-    });
+            extraPlugins: [SimpleUploadAdapterPlugin],
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 </script>

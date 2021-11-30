@@ -7,6 +7,7 @@
 
 @section('content')
     <button class="btn btn-sm btn-success float-right" onclick="postStory($('#editor'))">Save</button>
+    <input type="hidden" name="thumbnail" id="thumbnail">
     <div id="editor">
     </div>
 
@@ -24,6 +25,7 @@
                 });
                 var data = {
                     _token: "{{ csrf_token() }}",
+                    thumbnail: $('#thumbnail').val(),
                     title,
                     content
                 }
