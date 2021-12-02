@@ -2,11 +2,10 @@
 @section('title', 'My-echosystem - New story')
 
 @section('c_css')
-    <script src="{{ asset('/assets/js/ckeditor.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/ckeditor/build/ckeditor.js') }}"></script>
 @endsection
 
 @section('content')
-    <button class="btn btn-sm btn-success float-right" onclick="postStory($('#editor'))">Save</button>
     <input type="hidden" name="thumbnail" id="thumbnail">
     <div id="editor">
     </div>
@@ -19,7 +18,7 @@
         async function postStory(editor) {
             try {
                 var content = "";
-                var title = editor.children().first().prop('outerHTML')
+                var title = editor.children().first().prop('outerHTML') == `<p><br data-cke-filler="true"></p>` ? '<p>Untitle story</p>' : editor.children().first().prop('outerHTML'); 
                 editor.children().each(function() {
                     content += $(this).prop('outerHTML');
                 });

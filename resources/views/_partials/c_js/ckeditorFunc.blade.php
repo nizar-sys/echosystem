@@ -73,9 +73,28 @@
         };
     }
 
+    function saveData(data) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                postStory($('#editor'))
+
+                resolve();
+            }, 500);
+        });
+    }
+
+
     //Initialize the ckeditor
     InlineEditor.create(document.querySelector("#editor"), {
-            extraPlugins: [SimpleUploadAdapterPlugin],
+            extraPlugins: [SimpleUploadAdapterPlugin, 'Autosave'],
+            autosave: {
+                save(editor) {
+                    return saveData(editor.getData());
+                }
+            }
+
+        }).then((editor) => {
+
         })
         .catch((error) => {
             console.error(error);

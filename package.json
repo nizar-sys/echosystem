@@ -16,6 +16,8 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-inline": "^31.0.0",
+        "@ckeditor/ckeditor5-code-block": "^31.0.0",
         "@ckeditor/ckeditor5-image": "^31.0.0",
         "@ckeditor/ckeditor5-upload": "^31.0.0"
     }

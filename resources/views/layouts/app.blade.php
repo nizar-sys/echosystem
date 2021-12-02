@@ -47,7 +47,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('blog.home') }}">Stories</a>
                     </li>
-
+                    @yield('menu')
                 </ul>
 
                 <!-- End Menu -->

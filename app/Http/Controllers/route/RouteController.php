@@ -12,16 +12,23 @@ class RouteController extends Controller
     public function blogHome()
     {
         try {
-            return view('blog.index');
+            $story = Post::latest()->where('status', 'published')->get();
+            return view('blog.index', compact('story'));
         } catch (\Throwable $th) {
             return back()->with('error', 'Error '.$th->getMessage());
         }
     }
 
-    public function postDetail($slugPost)
+    public function postDetail($storyID)
     {
         try {
-            return view('blog.post');
+            $story = Post::findOrFail(base64_decode($storyID));
+            $stories = Post::latest()->where('status', 'published')->limit(3)->get();
+            $data = [
+                'story' => $story,
+                'stories' => $stories
+            ];
+            return view('blog.post', compact('data'));
         } catch (\Throwable $th) {
             return back()->with('error', 'Error '.$th->getMessage());
         }
@@ -49,7 +56,7 @@ class RouteController extends Controller
     public function listStory()
     {
         try {
-            $story = Post::all()->where('user_id', Auth::id());
+            $story = Post::latest()->where('user_id', Auth::id())->get();
             return view('blog.listStory', compact('story'));
         } catch (\Throwable $th) {
             return back()->with('error', 'Error '.$th->getMessage());

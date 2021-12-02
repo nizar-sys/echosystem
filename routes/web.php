@@ -23,7 +23,8 @@ Route::name('blog.')->group(function () {
     Route::post('/make-story', [BlogController::class, 'postStory'])->name('post.create');
     Route::get('/story/{id}/edit', [RouteController::class, 'editStory'])->name('post.edit');
     Route::get('/me/stories', [RouteController::class, 'listStory'])->name('post.list');
+    Route::post('/story-update-status', [BlogController::class, 'updateStatus'])->name('post.status.update');
 
     Route::post('/ckeditor/upload', [BlogController::class, 'uploadCkEditor'])->name('ckeditor.upload');
-    Route::get('/post/{post:slug}', [RouteController::class, 'postDetail'])->name('post.detail');
+    Route::get('/post/{post}/{randStr}', [RouteController::class, 'postDetail'])->name('post.detail');
 });

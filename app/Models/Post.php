@@ -15,6 +15,7 @@ class Post extends Model
         'tag_id',
         'title', 
         'content',
+        'status',
         'thumbnail'
     ];
 

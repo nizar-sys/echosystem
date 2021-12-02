@@ -60,4 +60,22 @@ class BlogController extends Controller
             ]);
         }
     }
+
+    public function updateStatus(Request $request)
+    {
+        try {
+            $story = Post::findOrFail($request->story_id);
+            $story->update([
+                'status' => $request->newStatus
+            ]);
+            return response()->json([
+                'message' => $request->newStatus == 'published' ? "Your story now is published" : 'Your story drafted',
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
 }
