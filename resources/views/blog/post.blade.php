@@ -44,15 +44,13 @@
                     <!-- Begin Top Meta -->
                     <div class="row post-top-meta">
                         <div class="col-md-2">
-                            <a href="author.html"><img class="author-thumb" src="{{ $data['story']->user->avatar }}"
+                            <a href="{{ route('blog.profile', ['username' => $data['story']->user->username]) }}"><img class="author-thumb" src="{{ $data['story']->user->avatar }}"
                                     alt="{{ $data['story']->user->fullname }}"></a>
                         </div>
                         <div class="col-md-10">
-                            <a class="link-dark" href="author.html">{{ $data['story']->user->fullname }}</a><a
+                            <a class="link-dark" href="{{ route('blog.profile', ['username' => $data['story']->user->username]) }}">{{ $data['story']->user->fullname }}</a><a
                                 href="#" class="btn follow">Follow</a>
-                            <span class="author-description">Founder of WowThemes.net and creator of <b>"Mediumish"</b>
-                                theme that you're currently previewing. Developing professional premium themes, templates,
-                                plugins, scripts since 2012.</span>
+                            <span class="author-description"></span>
                             <span class="post-date">{{ date('d-m-Y', strtotime($data['story']->created_at)) }}</span>
                         </div>
                     </div>

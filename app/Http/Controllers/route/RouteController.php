@@ -4,6 +4,7 @@ namespace App\Http\Controllers\route;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,6 +61,16 @@ class RouteController extends Controller
         try {
             $story = Post::latest()->where('user_id', Auth::id())->get();
             return view('blog.listStory', compact('story'));
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Error '.$th->getMessage());
+        }
+    }
+
+    public function profile($username)
+    {
+        try {
+            $user = User::where('username', $username)->first();
+            return view('blog.profile', compact('user'));
         } catch (\Throwable $th) {
             return back()->with('error', 'Error '.$th->getMessage());
         }

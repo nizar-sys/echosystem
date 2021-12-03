@@ -46,7 +46,7 @@
                 <!-- Begin Menu -->
                 <ul class="navbar-nav ml-auto mt-2">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('blog.home') }}">Stories</a>
+                        <a class="nav-link" href="/me/stories">Stories</a>
                     </li>
                     @yield('menu')
                 </ul>
@@ -80,7 +80,7 @@
                                     echosystem</a>
 
                             @else
-                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="{{ route('blog.profile', ['username'=>Auth::user()->username]) }}">Profile</a>
                                 <a class="dropdown-item" href="/new-story">Write new story</a>
                                 <a class="dropdown-item" href="/me/stories">Stories</a>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>

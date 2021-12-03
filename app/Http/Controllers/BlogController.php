@@ -82,4 +82,20 @@ class BlogController extends Controller
             ]);
         }
     }
+
+    public function deleteStory(Request $request)
+    {
+        try {
+            $story = Post::findOrFail($request->story_id);
+            $story->delete();
+            return response()->json([
+                'message' => 'Your story successfully deleted',
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
 }

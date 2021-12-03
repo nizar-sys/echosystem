@@ -23,12 +23,12 @@
                         <div class="metafooter">
                             <div class="wrapfooter">
                                 <span class="meta-footer-thumb">
-                                    <a href="author.html"><img class="author-thumb" src="{{ $story->user->avatar }}"
-                                            alt="{{ $story->user->fullname }}"></a>
+                                    <a href="{{ route('blog.profile', ['username' => $story->user->username]) }}"><img class="author-thumb" src="{{ $story->user->avatar }}"
+                                            alt="{{ $story->user->username }}"></a>
                                 </span>
                                 <span class="author-meta">
                                     <span class="post-name"><a
-                                            href="author.html">{{ $story->user->fullname }}</a></span><br />
+                                            href="{{ route('blog.profile', ['username' => $story->user->username]) }}">{{ $story->user->username }}</a></span><br />
                                     <span class="post-date">{{ date('d-m-Y', strtotime($story->created_at)) }}</span>
                                 </span>
                             </div>
