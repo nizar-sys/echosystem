@@ -18,7 +18,8 @@
         async function postStory(editor) {
             try {
                 var content = "";
-                var title = editor.children().first().prop('outerHTML') == `<p><br data-cke-filler="true"></p>` ? '<p>Untitle story</p>' : editor.children().first().prop('outerHTML'); 
+                var title = editor.children().first().prop('outerHTML') == `<p><br data-cke-filler="true"></p>` ?
+                    '<p>Untitle story</p>' : editor.children().first().prop('outerHTML');
                 editor.children().each(function() {
                     content += $(this).prop('outerHTML');
                 });
@@ -32,7 +33,7 @@
                 Snackbar.show({
                     text: 'Created!'
                 })
-                window.location.href = `/story/${response.id}/edit`
+                window.location.href = `/story/${"{{ Str::random(20) }}" + response.id}/edit`
             } catch (error) {
                 Snackbar.show({
                     text: "Error " + error

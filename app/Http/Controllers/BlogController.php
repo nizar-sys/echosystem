@@ -41,18 +41,21 @@ class BlogController extends Controller
                 $newPost = Post::all()->where('id', $request->story_id)->first()->update([
                     'title' => $request->title,
                     'content' => $request->content,
+                    'thumbnail' => $request->thumbnail == '' ? 'thumbPost.png' : $request->thumbnail,
                 ]);
             } else {
                 $newPost = Post::create([
                     'user_id' => $request->user()->id,
-                    'tag_id' => '1',
+                    'tags' => '',
                     'title' => $request->title,
                     'content' => $request->content,
-                    'thumbnail' => $request->thumbnail == '' ? 'thumbPost.png' : $request->thumbnail
+                    'thumbnail' => $request->thumbnail == '' ? 'thumbPost.png' : $request->thumbnail,
                 ]);
             }
 
-            return response()->json($newPost);
+            return response()->json([
+                'id' => base64_encode($newPost->id),
+            ]);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
@@ -66,7 +69,8 @@ class BlogController extends Controller
         try {
             $story = Post::findOrFail($request->story_id);
             $story->update([
-                'status' => $request->newStatus
+                'status' => $request->newStatus,
+                'tags' => $request->tags,
             ]);
             return response()->json([
                 'message' => $request->newStatus == 'published' ? "Your story now is published" : 'Your story drafted',

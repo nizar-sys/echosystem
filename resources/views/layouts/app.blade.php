@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ asset('/assets/img/favicon.ico') }}">
     <title>@yield('title')</title>
     <!-- Bootstrap core CSS -->
+    <script src="{{ asset('/assets/vendor/jquery/dist/jquery.min.js') }}"></script>
     <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -146,8 +147,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
-    <script src="{{ asset('/assets/vendor/jquery/dist/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
         integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">
     </script>

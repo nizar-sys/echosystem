@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title', strip_tags($data['story']->title))
 @section('c_css')
-<script src="{{ asset('/assets/vendor/ckeditor/build/ckeditor.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/ckeditor/build/ckeditor.js') }}"></script>
 @endsection
 @section('content')
     <!-- Begin Article
-                            ================================================== -->
+                                ================================================== -->
     <div class="container">
         <div class="row">
 
@@ -64,18 +64,31 @@
                     {!! $data['story']->content !!}
                 </div>
                 <!-- End Post Content -->
+
+                <!-- Begin Tags -->
+                <div class="after-post-tags">
+                    <ul class="tags">
+                        @php
+                            $tags = $data['story']->tags;
+                            $tags = explode(',', $tags);
+                        @endphp
+                        @foreach ($tags as $tag)
+                            <li><a href="#">{{Str::title($tag)}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <!-- End Tags -->
             </div>
             <!-- End Post -->
-
         </div>
     </div>
     <!-- End Article
-                            ================================================== -->
+                                ================================================== -->
 
     <div class="hideshare"></div>
 
     <!-- Begin Related
-                            ================================================== -->
+                                ================================================== -->
     <div class="graybg">
         <div class="container">
             <div class="row listrecent listrelated">
@@ -117,7 +130,7 @@
         </div>
     </div>
     <!-- End Related Posts
-                            ================================================== -->
+                                ================================================== -->
 @endsection
 
 @section('c_js')

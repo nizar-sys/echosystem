@@ -16,9 +16,8 @@ class AddColumnsToPostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('tag_id')->after('user_id');
-            $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('title')->after('tag_id');
+            $table->string('tags')->after('user_id');
+            $table->string('title')->after('tags');
             $table->longText('content')->after('title');
         });
     }

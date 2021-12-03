@@ -25,7 +25,7 @@
                                         {{ Str::title($story->status) }}
                                     </span>
                                     <a style="color: #000"
-                                        href="{{ route('blog.post.edit', ['id' => $story->id]) }}">{!! $story->title !!}</a>
+                                        href="{{ route('blog.post.edit', ['id' => Str::random(20) . base64_encode($story->id)]) }}">{!! $story->title !!}</a>
                                 </h2>
                                 </h4>
                                 <div class="metafooter">

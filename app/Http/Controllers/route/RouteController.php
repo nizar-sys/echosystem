@@ -46,6 +46,8 @@ class RouteController extends Controller
     public function editStory($storyID)
     {
         try {
+            $storyID = substr($storyID,20);
+            $storyID = base64_decode($storyID);
             $story = Post::all()->where('id', $storyID)->first();
             return view('blog.editStory', compact('story'));
         } catch (\Throwable $th) {
