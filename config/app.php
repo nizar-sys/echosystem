@@ -54,7 +54,7 @@ return [
 
     'url' => env('APP_URL', 'http://rpl-echosystem.herokuapp.com'),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', 'http://rpl-echosystem.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
