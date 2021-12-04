@@ -33,13 +33,13 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID', '965176177008-1p7qa7krvbtft07lssk1qq1l0t1gu79q.apps.googleusercontent.com'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET', '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'),
-        'redirect' => env('GOOGLE_URL', 'http://rpl-echosystem.herokuapp.com/echosystem/google/callback'),
+        'redirect' => env('GOOGLE_URL', 'https://rpl-echosystem.herokuapp.com/echosystem/google/callback'),
     ],
 
     'github' => [
         'client_id' => env('GITHUB_ID', '66447470a178847e5f9c'),
         'client_secret' => env('GITHUB_SECRET', '45cd5ec6524950eee074f25ffe290e0cd0061cf1'),
-        'redirect' => env('GITHUB_URL', 'http://rpl-echosystem.herokuapp.com/echosystem/github/callback'),
+        'redirect' => env('GITHUB_URL', 'https://rpl-echosystem.herokuapp.com/echosystem/github/callback'),
     ],
 
 ];

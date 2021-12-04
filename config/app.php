@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://rpl-echosystem.herokuapp.com'),
+    'url' => env('APP_URL', 'https://rpl-echosystem.herokuapp.com'),
 
-    'asset_url' => env('ASSET_URL', 'http://rpl-echosystem.herokuapp.com'),
+    'asset_url' => env('ASSET_URL', 'https://rpl-echosystem.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
