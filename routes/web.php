@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', function(){
+    return 'success deployed';
+});
+
 // BLOG
 Route::name('blog.')->group(function () {
     Route::get('/', [RouteController::class, 'blogHome'])->name('home');
