@@ -27,8 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::withoutDoubleEncoding();
-        if (App::isProduction()) {
-            URL::forceScheme('https');
-        }
+        URL::forceScheme('https');
     }
 }
