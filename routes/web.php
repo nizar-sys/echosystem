@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\route\RouteController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/test', function(){
-    return 'success deployed';
+    return 'success deployed '. App::environment();
 });
 
 // BLOG
